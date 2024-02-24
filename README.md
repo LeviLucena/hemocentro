@@ -67,11 +67,16 @@ python manage.py runserver
 - Chart.js: Biblioteca JavaScript para geração de gráficos interativos.
 - jQuery: Biblioteca JavaScript para manipulação de documentos HTML.
 
-## Contribuindo
+## Contribuições
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
+Contribuições são bem-vindas! Se você tiver ideias de melhorias, correções de bugs ou novas funcionalidades, sinta-se à vontade para abrir uma nova issue ou enviar um pull request.
+Licença. Este projeto é licenciado sob a licença MIT. Você é livre para usar, modificar e distribuir o código conforme necessário.
+
+Espero que isso ajude a descrever seu projeto de Gestão de Equipamentos de TI para o GitHub. Boa sorte com o seu projeto!
 
 ## Licença
 
 Este projeto está licenciado sob a [Licença MIT](LICENSE).
+
+## Autor: [![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/levilucena/)](https://www.linkedin.com/in/levilucena/)
 
