@@ -17,7 +17,7 @@ Este é um projeto desenvolvido em Django para controle de estoque de sangue em 
 
 | Imagem 1 | Imagem 2 | Imagem 3 | Imagem 4 | Imagem 5 |
 | ---------| ---------| ---------| ---------| ---------|
-|![image](https://github.com/LeviLucena/hemocentro/assets/34045910/2ed820a3-38d8-40a2-9cb1-0a5ecc9457cf) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/81c95146-698f-4a19-80d2-4c366c803cc4) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/ae055f4d-2739-451f-8861-a425d69056e0) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/fb67f57e-1787-4fae-8292-e3861d97a849) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/d615f2b3-d6e7-4ab0-9ecd-84e47df91a4e) |
+|![image](https://github.com/LeviLucena/hemocentro/assets/34045910/2ed820a3-38d8-40a2-9cb1-0a5ecc9457cf) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/81c95146-698f-4a19-80d2-4c366c803cc4) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/a6ffcddf-fa8b-4a71-8169-d20f401e4725) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/7ec32685-e46b-41ce-87bf-486daf240442) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/d615f2b3-d6e7-4ab0-9ecd-84e47df91a4e) |
 
 
 ## Instalação
