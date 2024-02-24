@@ -67,6 +67,7 @@ Com isto será possível:
 
 ## Tecnologias Utilizadas
 
+- Anaconda: Distribuição gratuita e de código aberto da linguagem de programação Python, que oferece uma maneira eficiente de gerenciar pacotes e ambientes virtuais
 - Django: Framework web em Python para desenvolvimento rápido e limpo.
 - Bootstrap: Framework front-end para criação de interfaces responsivas.
 - DataTables: Plugin jQuery para manipulação de tabelas HTML.
