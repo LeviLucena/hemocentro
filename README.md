@@ -56,6 +56,11 @@ python manage.py runserver
 
 7. Para acessar o banco de dados Django, utilize o endereço [http://localhost:8000/admin](http://localhost:8000/admin).
 
+Crie um superusuário: Antes de acessar a interface administrativa, certifique-se de que você tenha um superusuário criado para acessar o admin do Django. Se você ainda não criou um, pode fazer isso 
+executando o comando ```python manage.py createsuperuser``` no terminal e seguir as instruções.
+
+Com isto será possível:
+
 - Criar tabelas e colunas de acordo com as regras de negócio do seu sistema.
 - Criar superusuário de demais usuários genéricos para acessar o sistema.
 - Criar grupos para gestão de acessos e permissionamentos.
