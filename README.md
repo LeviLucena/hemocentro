@@ -24,7 +24,7 @@ Este é um projeto desenvolvido em Django para controle de estoque de sangue em 
 1. Clone o repositório para o seu ambiente local:
 
 ```
-git clone https://github.com/seu-usuario/estoque-sangue.git
+git clone https://github.com/LeviLucena/hemocentro.git
 ```
 
 2. Navegue até o diretório do projeto:
