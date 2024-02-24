@@ -1,4 +1,4 @@
-# Hemocentro - Projeto de Gestão de Estoque de Sangue
+# Hemocentro - Gestão de Estoque de Sangue
 
 ![307550608-754dd79c-4266-4955-b564-7cc797cafdc5](https://github.com/LeviLucena/hemocentro/assets/34045910/88c6a127-a054-4b6f-9324-7783c84ab6ac)
 
