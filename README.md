@@ -3,21 +3,16 @@
 
 ![307550608-754dd79c-4266-4955-b564-7cc797cafdc5](https://github.com/LeviLucena/hemocentro/assets/34045910/88c6a127-a054-4b6f-9324-7783c84ab6ac)
 
-                       Este é um projeto desenvolvido em Django com o objetivo de facilitar o controle de estoque de
-                        sangue em hemocentros. Com a crescente demanda por sangue e produtos sanguíneos, é crucial ter
-                        um sistema eficiente para gerenciar o estoque e garantir a disponibilidade adequada para
-                        pacientes que necessitam de transfusões.
+Este é um projeto desenvolvido em Django com o objetivo de facilitar o controle de estoque de sangue em hemocentros. Com a crescente demanda por sangue e produtos sanguíneos, é crucial ter
+um sistema eficiente para gerenciar o estoque e garantir a disponibilidade adequada para pacientes que necessitam de transfusões.
 
-                        O sistema permite o registro detalhado dos estoques de sangue por tipo sanguíneo em diferentes
-                        hemocentros. Os usuários podem facilmente adicionar, atualizar e remover registros de estoque,
-                        garantindo que as informações estejam sempre atualizadas e precisas.
+O sistema permite o registro detalhado dos estoques de sangue por tipo sanguíneo em diferentes hemocentros. Os usuários podem facilmente adicionar, atualizar e remover registros de estoque,
+garantindo que as informações estejam sempre atualizadas e precisas.
 
-                        Além disso, o sistema oferece uma variedade de funcionalidades adicionais para facilitar a
-                        gestão do estoque e a tomada de decisões informadas
+Além disso, o sistema oferece uma variedade de funcionalidades adicionais para facilitar a gestão do estoque e a tomada de decisões informadas
 
-                        Com essas funcionalidades integradas, o sistema de controle de estoque de sangue em hemocentros
-                        torna-se uma ferramenta poderosa para garantir a eficiência operacional e a disponibilidade
-                        contínua de sangue para pacientes em necessidade.
+Com essas funcionalidades integradas, o sistema de controle de estoque de sangue em hemocentros torna-se uma ferramenta poderosa para garantir a eficiência operacional e a disponibilidade
+contínua de sangue para pacientes em necessidade.
 
 ## Funcionalidades
 
