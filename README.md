@@ -24,9 +24,12 @@ contínua de sangue para pacientes em necessidade.
 
 ## Galeria
 
-| Imagem 1 | Imagem 2 | Imagem 3 | Imagem 4 | Imagem 5 |
-| ---------| ---------| ---------| ---------| ---------|
-|![image](https://github.com/LeviLucena/hemocentro/assets/34045910/2ed820a3-38d8-40a2-9cb1-0a5ecc9457cf) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/81c95146-698f-4a19-80d2-4c366c803cc4) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/a6ffcddf-fa8b-4a71-8169-d20f401e4725) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/7ec32685-e46b-41ce-87bf-486daf240442) | ![image](https://github.com/LeviLucena/hemocentro/assets/34045910/372856b0-19b7-44ee-85ad-6dbaf8c292f1) |
+| Imagem 1 | Imagem 2 | Imagem 3 | Imagem 4 | Imagem 5 | Imagem 6 | Imagem 7 |
+| ---------| ---------| ---------| ---------| ---------| ---------| ---------|
+| ![1](https://github.com/LeviLucena/hemocentro/assets/34045910/2460a12e-3b3d-4bfb-aa6a-5ae7577d3503) | ![2](https://github.com/LeviLucena/hemocentro/assets/34045910/38ef48b7-5a33-4d82-9492-012f1ad0626e) | ![3](https://github.com/LeviLucena/hemocentro/assets/34045910/a4ff15db-8cc7-4028-9341-30f9e4f78647) | ![4](https://github.com/LeviLucena/hemocentro/assets/34045910/ceb2d016-20a9-43ae-b1a9-13e2eefb5618) | ![5](https://github.com/LeviLucena/hemocentro/assets/34045910/17b1f603-6c3f-4626-a55d-b34240291119) | ![6](https://github.com/LeviLucena/hemocentro/assets/34045910/0e741f4c-7727-402e-921d-2261f99d2297) | ![7](https://github.com/LeviLucena/hemocentro/assets/34045910/dd5846d8-86f4-48e7-9545-fc4d1ec46869) |
+
+
+ |
 
 
 ## Instalação
