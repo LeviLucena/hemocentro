@@ -28,10 +28,6 @@ contínua de sangue para pacientes em necessidade.
 | ---------| ---------| ---------| ---------| ---------| ---------| ---------|
 | ![1](https://github.com/LeviLucena/hemocentro/assets/34045910/2460a12e-3b3d-4bfb-aa6a-5ae7577d3503) | ![2](https://github.com/LeviLucena/hemocentro/assets/34045910/38ef48b7-5a33-4d82-9492-012f1ad0626e) | ![3](https://github.com/LeviLucena/hemocentro/assets/34045910/a4ff15db-8cc7-4028-9341-30f9e4f78647) | ![4](https://github.com/LeviLucena/hemocentro/assets/34045910/ceb2d016-20a9-43ae-b1a9-13e2eefb5618) | ![5](https://github.com/LeviLucena/hemocentro/assets/34045910/17b1f603-6c3f-4626-a55d-b34240291119) | ![6](https://github.com/LeviLucena/hemocentro/assets/34045910/0e741f4c-7727-402e-921d-2261f99d2297) | ![7](https://github.com/LeviLucena/hemocentro/assets/34045910/dd5846d8-86f4-48e7-9545-fc4d1ec46869) |
 
-
- |
-
-
 ## Instalação
 
 1. Clone o repositório para o seu ambiente local:
