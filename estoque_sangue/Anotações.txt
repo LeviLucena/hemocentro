@@ -37,9 +37,7 @@ Limpar Cache e Metadado
 python manage.py migrate --run-syncdb
 
 ==========================================
-API OPENAI VSCODE
 
-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
 
 ==========================================
 a estrutura do projeto esta assim
