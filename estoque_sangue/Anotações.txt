@@ -1,0 +1,130 @@
+Foi criado um superusuario para o banco de dados django
+http://localhost:8000/admin
+
+usuário: Levi
+email: sr_lucen@yahoo.com.br
+senha: Pocophone@2022
+
+=========================================
+Cor dos ícones e texto 
+
+text-danger
+text-sucess
+text-warning
+==========================================
+Os atalhos para identar código no VS Code são:
+
+Windows: shift + alt + f
+
+Mac: shift + option + f
+
+Linux: ctrl + shift + i
+
+==========================================
+fazer as devidas alterações antes de executar python
+
+python manage.py makemigrations
+python manage.py migrate
+
+==========================================
+execute o sistema
+
+python manage.py runserver
+
+==========================================
+Limpar Cache e Metadado
+
+python manage.py migrate --run-syncdb
+
+==========================================
+API OPENAI VSCODE
+
+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
+
+==========================================
+a estrutura do projeto esta assim
+
+estoque_sangue
+	estoque
+		_pycache_
+		migrations
+			_pycache_
+			_init_.py
+			0001_initial.py
+		_init_.py
+		admin.py
+		apps.py
+		forms.py
+		models.py
+		tests.py
+		views.py		
+	estoque_sangue
+		_pycache_
+		_init_.py
+		asgi.py
+		settings.py
+		urls.py
+		wsgi.py
+	scripts
+	static
+		estoque
+			blood_stock.js
+		rodape_branco.png
+		rodape_preto.png
+	templates
+		estoque
+	estoque.html
+	mapa.html
+	graficos.html
+	tabela.html
+	login.html
+	db.sqlite3
+	manage.py
+
+===================================
+A estrutura do seu projeto parece seguir o padrão típico de um projeto Django. Aqui está uma breve descrição dos principais diretórios e arquivos:
+
+estoque_sangue/: Este é o diretório do seu projeto Django.
+estoque/: Este é o diretório da sua aplicação Django.
+migrations/: Este diretório contém as migrações do banco de dados para sua aplicação.
+_init_.py: Este arquivo indica que o diretório é um pacote Python.
+admin.py: Arquivo onde você pode registrar modelos para serem gerenciados pelo painel de administração do Django.
+apps.py: Arquivo de configuração da aplicação Django.
+forms.py: Arquivo onde você pode definir formulários personalizados.
+models.py: Arquivo onde você define os modelos de banco de dados para sua aplicação.
+tests.py: Arquivo onde você pode escrever testes para sua aplicação.
+views.py: Arquivo onde você define as views (visualizações) da sua aplicação.
+estoque_sangue/: Este diretório contém os arquivos de configuração do projeto.
+_init_.py: Este arquivo indica que o diretório é um pacote Python.
+asgi.py: Arquivo de configuração do ASGI para implantações do Django.
+settings.py: Arquivo de configuração principal do Django onde você configura as configurações do seu projeto.
+urls.py: Arquivo onde você define os padrões de URL para sua aplicação.
+wsgi.py: Arquivo de configuração do WSGI para implantações do Django.
+templates/: Este diretório é onde você pode armazenar os templates (modelos HTML) para suas views.
+db.sqlite3: Este é o banco de dados SQLite padrão que o Django utiliza por padrão. Para projetos maiores ou em produção, você pode considerar a utilização de outros bancos de dados como PostgreSQL, MySQL, etc.
+manage.py: Este é o script de gerenciamento do Django usado para várias tarefas administrativas, como executar o servidor de desenvolvimento, criar migrações, entre outras.
+
+=====================================
+estes sao os tipos de sangue
+TIPO SANGUINEO
+A +
+A -
+B + 
+B -
+AB +
+AB -
+O +
+O -
+
+
+estes sao os tipos de hemocentro
+FUNDAÇÃO PRÓ-SANGUE
+UNIFESP
+SANTA CASA
+COLSAN
+UNICAMP
+RIBEIRÃO PRETO
+SÃO JOSÉ DO RIO PRETO
+MARILIA
+BOTUCATU
+====================================

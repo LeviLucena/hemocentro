@@ -1,0 +1,113 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Gestão de Projetos</title>
+
+    <!-- Inclua o CSS do Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Inclua os ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        /* Estilos CSS personalizados */
+        .jumbotron {
+            background-color: #f8f9fa;
+            margin-top: 50px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .jumbotron h1 {
+            color: #007bff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+        /* Estilos para o rodapé */
+        .footer {
+            position: relative; /* Define o posicionamento relativo */
+            bottom: 0; /* Alinha o rodapé na parte inferior */
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            color: white;
+            height: 100%; /* Define a altura igual a 100% */
+            margin-top: 50px; /* Ajusta o espaço entre o rodapé e o quadro de login */
+        }
+
+        .footer img {
+            max-height: 100%; /* Define a altura máxima igual a 100% */
+        }
+    </style>
+
+    <script>
+        function validarFormulario() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            if (username === "" || password === "") {
+                alert("Por favor, preencha todos os campos.");
+                return false; // Impede o envio do formulário
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1><i class="fas fa-chart-bar"></i> Painel de Gestão Hemocentros</h1>
+            <p>Por favor, faça login para acessar o painel.</p>
+            <form method="post" onsubmit="return validarFormulario();">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" name="username" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" class="form-control">
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Entrar</button>
+                {% if error_message %}
+                <p class="error-message">{{ error_message }}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        <img src="../static/rodape_preto.png" alt="Rodapé">
+    </div>
+
+    <!-- Inclua o JavaScript do Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
