@@ -1,9 +1,15 @@
 Foi criado um superusuario para o banco de dados django
 http://localhost:8000/admin
 
-usuário: Levi
-email: sr_lucen@yahoo.com.br
-senha: Pocophone@2022
+========================================
+Para visualizar os registros da sua base de dados Django, você pode utilizar a interface administrativa do Django, que é uma ferramenta poderosa e fácil de usar para gerenciar os dados do seu aplicativo. Para fazer isso, siga estes passos:
+
+Criar um superusuário: Antes de acessar a interface administrativa, certifique-se de que você tenha um superusuário criado para acessar o admin do Django. Se você ainda não criou um, pode fazer isso executando o comando 
+
+python manage.py createsuperuser no terminal e seguir as instruções.
+
+Acessar a interface administrativa: Execute seu servidor Django (python manage.py runserver) e acesse a interface administrativa no navegador, digitando http://localhost:8000/admin. 
+Faça login com as credenciais do superusuário que você criou.
 
 =========================================
 Cor dos ícones e texto 
