@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date  # Importe a função date do módulo datetime
 
 class Hemocentro(models.Model):
     NOME_CHOICES = [
@@ -19,6 +20,9 @@ class Hemocentro(models.Model):
 
 class EstoqueSangue(models.Model):
     hemocentro = models.ForeignKey(Hemocentro, on_delete=models.CASCADE)
+    data = models.DateField(default=date.today)  # Corrigido para importar a função date
+    bolsas_coletadas = models.IntegerField(default=0)
+    bolsas_utilizadas = models.IntegerField(default=0)
     estoque_atual_A_positivo = models.IntegerField(default=0)
     estoque_minimo_A_positivo = models.IntegerField(default=0)
     estoque_atual_A_negativo = models.IntegerField(default=0)
@@ -40,6 +44,4 @@ class EstoqueSangue(models.Model):
         return f"{self.hemocentro} - Estoque de Sangue"
 
     class Meta:
-        verbose_name_plural = 'EstoqueSangue'  # Defina o nome plural para aparecer na interface de administração
-
-        
+        verbose_name_plural = 'EstoqueSangue'

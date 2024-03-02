@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa de Sangue 3D</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+<div id="govsp-topbarGlobal" class="blu-e">
+                <div id="topbarGlobal">
+                    <div id="topbarLink" class="govsp-black">
+                    <div class="govsp-portal">
+                        <a href="https://www.saopaulo.sp.gov.br" accesskey="1" title="Governo SP"><img src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-governo-do-estado-sp.png" alt="Logo Governo SP" height="38" class="logo">
+                    </a></div><a href="https://www.saopaulo.sp.gov.br" accesskey="1" title="Governo SP"> 
+                </a></div><a href="https://www.saopaulo.sp.gov.br" accesskey="1" title="Governo SP">
+                </a><nav class="govsp-navbar govsp-navbar-expand-lg"><a href="https://www.saopaulo.sp.gov.br" accesskey="1" title="Governo SP">
+                    
+                        </a>
+    
+                        <a class="govsp-social" href="https://www.flickr.com/governosp/" target="_blank" title="Flickr Governo de São Paulo (nova janela)"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-flickr.png" alt="Flickr Governo de São Paulo"></a>
+                                           
+                        <a class="govsp-social" href="https://www.linkedin.com/company/governosp/" target="_blank" title="Linkedin Governo de São Paulo (nova janela)"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-linkedin.png" alt="Linkedin Governo de São Paulo"></a>
+    
+                        <a class="govsp-social" href="https://www.tiktok.com/@governosp" target="_blank" title="TikTok Governo de São Paulo (nova janela)"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-tiktok.png" alt="TikTok Governo de São Paulo"></a>                        
+                        
+                        <a class="govsp-social" href="https://www.youtube.com/governosp/" target="_blank" title="Youtube Governo de São Paulo (nova janela)"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-youtube.png" alt="Youtube Governo de São Paulo"></a>
+                        
+                        <a class="govsp-social" href="https://www.twitter.com/governosp/" target="_blank" title="Twitter Governo de São Paulo (nova janela)"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-twitter.png" alt="Twitter Governo de São Paulo"></a>
+    
+                        <a class="govsp-social" href="https://www.instagram.com/governosp/" target="_blank" title="Instagram Governo de São Paulo"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-insta.png" alt="Instagram Governo de São Paulo"></a>
+                        
+                        <a class="govsp-social" href="https://www.facebook.com/governosp/" target="_blank" title="Facebook Governo de São Paulo (nova janela)"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-facebook.png" alt="Facebook Governo de São Paulo"></a>                       
+                        
+                        <p class="govsp-social">/governosp</p>
+                        <div id="separador-nav"></div>
+                        <a class="govsp-acessibilidade" href="#" id="aumentaFonte" accesskey="2" title="Aumentar Fonte"><img class="govsp-acessibilidade" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-big-font.png" alt="Aumentar Fonte"></a>
+
+                        <a class="govsp-acessibilidade" href="#" id="reduzFonte" accesskey="3" title="Diminuir Fonte"><img class="govsp-acessibilidade" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-small-font.png" alt="Diminuir Fonte"></a>
+
+                        <a class="govsp-acessibilidade" href="#" id="altocontraste" accesskey="4" title="Aplicar contraste"><img class="govsp-acessibilidade" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-contrast.png" alt="Contraste"></a>
+
+                        <a class="govsp-acessibilidade" href="https://www.saopaulo.sp.gov.br/fale-conosco/comunicar-erros/" accesskey="5"><img class="govsp-acessibilidade" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-error-report.png" alt="Símbolo de exclamação dentro de triângulo"></a>                        
+                </nav>
+            </div>
+            <div class="govsp-kebab" id="govsp-kebab">
+                    <figure></figure>
+                    <figure class="govsp-middle" id="govsp-middle"></figure>
+                    <span class="govsp-cross" id="govsp-cross"></span>
+                    <figure></figure>
+                    <ul class="govsp-dropdown" id="govsp-dropdown">               
+                        <li>
+
+                        </li><li><a class="govsp-social" href="https://www.flickr.com/governosp/" target="_blank" title="Flickr Governo de São Paulo"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-flickr.png" alt="Flickr Governo de São Paulo"></a></li>
+                        
+                        <li><a class="govsp-social" href="https://www.linkedin.com/company/governosp/" target="_blank" title="Linkedin Governo de São Paulo"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-linkedin.png" alt="Linkedin Governo de São Paulo"></a></li>
+
+                        <li><a class="govsp-social" href="https://www.tiktok.com/@governosp" target="_blank" title="TikTok Governo de São Paulo"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-tiktok.png" alt="TikTok Governo de São Paulo"></a></li>
+
+                        <li><a class="govsp-social" href="https://www.twitter.com/governosp/" target="_blank" title="Twitter Governo de São Paulo"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-twitter.png" alt="Twitter Governo de São Paulo"></a></li>
+                        
+                        <li><a class="govsp-social" href="https://www.youtube.com/governosp/" target="_blank" title="Youtube Governo de São Paulo"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-youtube.png" alt="Youtube Governo de São Paulo"></a></li> 
+
+                        <li><a class="govsp-social" href="https://www.instagram.com/governosp/" target="_blank" title="Instagram Governo de São Paulo"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-insta.png" alt="Instagram Governo de São Paulo"></a></li>
+                      
+                        <li><a class="govsp-social" href="https://www.facebook.com/governosp/" target="_blank" title="Acessar o Facebook do Governo de São Paulo"><img class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-facebook.png" alt="Acessar o Facebook Governo de São Paulo"></a></li>
+                        
+                        <li><p class="govsp-social">/governosp</p></li>
+                    </ul> 
+            </div>
+        </div>
+    <script>
+        // Inicializar cena, câmera e renderizador
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xffffff); // Define a cor de fundo como branco (0xffffff)
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Função para criar cilindros representando bolsas de sangue para cada tipo sanguíneo
+        function criarCilindro(x, tipo, quantidade) {
+            // Ajustar a altura do cilindro
+            const altura = 2; // Altura fixa para todos os cilindros
+
+            // Calcular o preenchimento do cilindro com base na quantidade de sangue disponível
+            let preenchimento = 0;
+            if (quantidade < 5) {
+                preenchimento = 0;
+            } else if (quantidade < 15) {
+                preenchimento = quantidade / 15; // Preenchimento proporcional entre 0 e 1
+            } else {
+                preenchimento = 1;
+            }
+
+            // Criar geometria do cilindro com base no preenchimento
+            const geometry = new THREE.CylinderGeometry(0.5, 0.5, altura * preenchimento, 32);
+            const material = new THREE.MeshBasicMaterial({ color: 0xff0000 }); // Vermelho para representar o sangue
+            const bolsaDeSangue = new THREE.Mesh(geometry, material);
+            bolsaDeSangue.position.x = x; // Posição do cilindro ao longo do eixo x
+            bolsaDeSangue.position.y = altura * preenchimento / 2; // Posição vertical do cilindro
+            scene.add(bolsaDeSangue);
+
+            // Texto para identificar o tipo sanguíneo e a quantidade de sangue
+            const loader = new THREE.FontLoader();
+            loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+                const textoTipoSanguineo = new THREE.Mesh(
+                    new THREE.TextGeometry(tipo + " - " + quantidade, {
+                        font: font,
+                        size: 0.3,
+                        height: 0.02
+                    }),
+                    new THREE.MeshBasicMaterial({ color: 0x000000 }) // Cor do texto: preto
+                );
+                textoTipoSanguineo.position.set(x - 0.5, altura + 0.5, 0); // Posição do texto
+                scene.add(textoTipoSanguineo);
+            });
+        }
+
+        // Criar cilindros para cada tipo sanguíneo com a quantidade especificada
+        criarCilindro(-3, "A+", 8);
+        criarCilindro(-1.5, "A-", 10);
+        criarCilindro(0, "B+", 20);
+        criarCilindro(1.5, "B-", 3);
+        criarCilindro(3, "AB+", 28);
+        criarCilindro(4.5, "AB-", 12);
+        criarCilindro(6, "O+", 5);
+        criarCilindro(7.5, "O-", 18);
+
+        // Posicionar a câmera
+        camera.position.z = 10;
+
+        // Função de renderização
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+
+    
+</body>
+</html>

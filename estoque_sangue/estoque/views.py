@@ -1,6 +1,7 @@
 # estoque/views.py
 from django.shortcuts import render, redirect
 from .models import EstoqueSangue
+from .forms import EstoqueSangueForm
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 
@@ -33,6 +34,18 @@ def processar_formulario(request):
         return redirect('pagina_sucesso')
     
     return render(request, 'estoque.html')
+
+def inserir_registro(request):
+    if request.method == 'POST':
+        form = EstoqueSangueForm(request.POST)
+        if form.is_valid():
+            # Salvar o registro
+            form.save()
+            # Redirecionar para uma página de sucesso ou qualquer outra página desejada
+            return redirect('pagina_de_sucesso')  # Substitua 'pagina_de_sucesso' pelo nome da sua rota de sucesso
+    else:
+        form = EstoqueSangueForm()
+    return render(request, 'inserir_registro.html', {'form': form})
 
 def estoque_view(request):
     if request.method == 'POST':

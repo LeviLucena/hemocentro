@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de São Paulo</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Custom CSS -->
+    <style>
+        #map {
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Coordenadas do sudoeste e nordeste de São Paulo para definir o foco apenas no estado
+        var bounds = [
+            [-25.583, -53.109], // Sudoeste de São Paulo
+            [-19.766, -44.196]  // Nordeste de São Paulo
+        ];
+
+        // Criar o mapa Leaflet focado apenas em São Paulo
+        var map = L.map('map', {
+            maxBounds: bounds,
+            minZoom: 7 // Ajuste o nível mínimo de zoom para mostrar apenas o estado de São Paulo
+        }).fitBounds(bounds);
+
+        // Adicionar o mapa base do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Carregar os limites dos municípios de São Paulo usando o GeoJSON
+        fetch('../static/SP_Municipios_2022.json')
+            .then(response => response.json())
+            .then(data => {
+                L.geoJSON(data, {
+                    style: function (feature) {
+                        return {
+                            color: 'blue', // Cor das linhas das fronteiras
+                            weight: 1, // Espessura das linhas das fronteiras
+                            dashArray: '5, 5' // Padrão tracejado
+                        };
+                    }
+                }).addTo(map);
+            });
+
+        // Dados dos hemocentros e seus estoques
+        var hemocentros = [
+            { nome: "FUNDAÇÃO PRÓ-SANGUE", latitude: -23.556994511528096, longitude: -46.66879108834876, estoqueMinimo: 5 },
+            { nome: "UNIFESP", latitude: -23.594616822258832, longitude: -46.64486837300925, estoqueMinimo: 15 },
+            { nome: "SANTA CASA", latitude: -23.54377, longitude: -46.64998, estoqueMinimo: 25 },
+            { nome: "COLSAN", latitude: -23.569116, longitude: -46.704055, estoqueMinimo: 5 },
+            { nome: "UNICAMP", latitude: -22.818229, longitude: -47.064201, estoqueMinimo: 15 },
+            { nome: "RIBEIRÃO PRETO", latitude: -21.177997, longitude: -47.810745, estoqueMinimo: 25 },
+            { nome: "SÃO JOSÉ DO RIO PRETO", latitude: -20.8226, longitude: -49.3804, estoqueMinimo: 5 },
+            { nome: "MARILIA", latitude: -22.2118, longitude: -49.9504, estoqueMinimo: 15 },
+            { nome: "BOTUCATU", latitude: -22.8876, longitude: -48.4468, estoqueMinimo: 25 }
+        ];
+
+        // Adicionar marcadores para cada hemocentro
+        hemocentros.forEach(function (hemocentro) {
+            var marker = L.marker([hemocentro.latitude, hemocentro.longitude]).addTo(map);
+            var popupContent = '<b>' + hemocentro.nome + '</b><br>';
+            popupContent += '<table class="table"><thead><tr><th>Tipo Sanguíneo</th><th>Estoque Atual</th><th>Estoque Mínimo</th></tr></thead><tbody>';
+            var tiposSanguineos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+            for (var i = 0; i < tiposSanguineos.length; i++) {
+                var estoqueAtual = randomNumber(1, 50); // Gerar estoque atual aleatório
+                var estoqueMinimo = randomNumber(1, 20); // Gerar estoque mínimo aleatório
+                popupContent += '<tr><td>' + tiposSanguineos[i] + '</td><td>' + estoqueAtual + '</td><td>' + estoqueMinimo + '</td></tr>';
+            }
+            popupContent += '</tbody></table>';
+            marker.bindPopup(popupContent);
+            // Definir a cor do marcador com base no estoque mínimo
+            if (hemocentro.estoqueMinimo === 5) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            } else if (hemocentro.estoqueMinimo === 15) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            } else if (hemocentro.estoqueMinimo === 25) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            }
+        });
+
+        // Função para gerar números aleatórios dentro de um intervalo específico
+        function randomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+    </script>
+</body>
+
+</html>

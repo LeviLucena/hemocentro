@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,36 +10,52 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://saopaulo.sp.gov.br/barra-govsp/css/top-padrao-govsp-v2.min.css?vs=3.0">
+    <link rel="stylesheet" type="text/css"
+        href="https://www.saopaulo.sp.gov.br/barra-govsp/css/rodape-padrao-govsp.min.css">
+
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Montserrat', 'Roboto', sans-serif;
+            background-color: #FFFFFF;
             color: #495057;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Faz o conteúdo ocupar toda a altura da tela */
+            padding: 20px;
         }
+
         .container {
-            width: 100%;
-            max-width: 500px; /* Define a largura máxima do conteúdo */
-            padding: 0 15px; /* Adiciona um espaço nas laterais do conteúdo */
+            max-width: 800px;
+            margin: 0 auto;
         }
+
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            /* Define a largura máxima do conteúdo */
+            padding: 0 15px;
+            /* Adiciona um espaço nas laterais do conteúdo */
+        }
+
         h1 {
             color: #343a40;
-            text-align: center; /* Centraliza o título */
+            text-align: center;
+            /* Centraliza o título */
         }
+
         .form-label {
             font-weight: 700;
             color: #6c757d;
         }
+
         .btn-primary {
             background-color: #007bff;
             border-color: #007bff;
-            width: 100%; /* Faz o botão ocupar toda a largura do seu contêiner */
+            width: 100%;
+            /* Faz o botão ocupar toda a largura do seu contêiner */
         }
+
         .btn-primary:hover {
             background-color: #0069d9;
             border-color: #0062cc;
@@ -46,162 +63,338 @@
 
         /* Estilos para o rodapé */
         .footer {
-            position: relative; /* Define o posicionamento relativo */
-            bottom: 0; /* Alinha o rodapé na parte inferior */
+            position: relative;
+            /* Define o posicionamento relativo */
+            bottom: 0;
+            /* Alinha o rodapé na parte inferior */
             width: 100%;
             text-align: center;
             padding: 10px;
             color: white;
-            height: 100%; /* Define a altura igual a 100% */
-            margin-top: 50px; /* Ajusta o espaço entre o rodapé e o quadro de login */
+            height: 100%;
+            /* Define a altura igual a 100% */
+            margin-top: 50px;
+            /* Ajusta o espaço entre o rodapé e o quadro de login */
         }
 
         .footer img {
-            max-height: 100%; /* Define a altura máxima igual a 100% */
+            max-height: 100%;
+            /* Define a altura máxima igual a 100% */
         }
 
         /* Ocultar o botão inicialmente */
         #btn-salvar {
             display: none;
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="container">
-        <div class="row">
-            <div class="col text-center">
-                <div class="menu-item">
-                    <a href="#">
-                        <i class="fas fa-box-open fa-3x mb-3"></i>
-                        <h4>Estoque</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="col text-center">
-                <div class="menu-item">
-                    <a href="registros.html">
-                        <i class="fas fa-clipboard-list fa-3x mb-3"></i>
-                        <h4>Registros</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="col text-center">
-                <div class="menu-item">
-                    <a href="graficos.html">
-                        <i class="fas fa-chart-bar fa-3x mb-3"></i>
-                        <h4>Gráficos</h4>
-                    </a>
-                </div>
-            </div>
-            <div class="col text-center">
-                <div class="menu-item">
-                    <a href="exportar.html">
-                        <i class="fas fa-file-export fa-3x mb-3"></i>
-                        <h4>Exportar</h4>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-        <h1 class="mt-5">Estoque de Sangue</h1>
-        <div class="row mt-4">
-            <div class="col-md-12"> <!-- Alterado para col-md-12 para ocupar toda a largura em dispositivos pequenos -->
-                <form method="post" id="blood-form">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="hemocentro" class="form-label">Hemocentro</label>
-                        <select class="form-select" id="hemocentro" name="hemocentro">
-                            <option selected disabled>Selecione um hemocentro</option>
-                            <option value="FUNDAÇÃO PRÓ-SANGUE">FUNDAÇÃO PRÓ-SANGUE</option>
-                            <option value="UNIFESP">UNIFESP</option>
-                            <option value="SANTA CASA">SANTA CASA</option>
-                            <option value="COLSAN">COLSAN</option>
-                            <option value="UNICAMP">UNICAMP</option>
-                            <option value="RIBEIRÃO PRETO">RIBEIRÃO PRETO</option>
-                            <option value="SÃO JOSÉ DO RIO PRETO">SÃO JOSÉ DO RIO PRETO</option>
-                            <option value="MARILIA">MARILIA</option>
-                            <option value="BOTUCATU">BOTUCATU</option>
-                        </select>
+    <div class="container header">
+        <section class="govsp-topo">
+            <div id="govsp-topbarGlobal" class="blu-e">
+                <div id="topbarGlobal">
+                    <div id="topbarLink" class="govsp-black">
+                        <div class="govsp-portal">
+                            <a href="https://www.saopaulo.sp.gov.br"
+                                title="nova guia Site Governo do Estado de São Paulo" target="_blank"><img
+                                    src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-governo-do-estado-sp.png"
+                                    alt="logomarca Governo de São Paulo" height="38" class="logo">
+                            </a>
+                        </div>
                     </div>
-                    <div id="blood-types"></div>
-                    <button id="btn-salvar" type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Salvar</button>
-                </form>
+                    <nav class="govsp-navbar govsp-navbar-expand-lg">
+                        <a class="govsp-social" href="http://bit.ly/govspnozap"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-whatsapp.png"
+                                alt="Whatsapp Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.flickr.com/governosp/"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-flickr.png"
+                                alt="Flickr Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.linkedin.com/company/governosp/"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-linkedin.png"
+                                alt="Linkedin Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.tiktok.com/@governosp"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-tiktok.png"
+                                alt="TikTok Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.youtube.com/governosp/"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-youtube.png"
+                                alt="Youtube Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.twitter.com/governosp/"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-twitter.png"
+                                alt="Twitter Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.instagram.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-insta.png"
+                                alt="Instagram Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.facebook.com/governosp/"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-facebook.png"
+                                alt="Facebook Governo do Estado de SP" /></a>
+
+                        <p class="govsp-social">/governosp</p>
+
+                        <a class="govsp-acessibilidade" title="nova guia"
+                            href="https://www.saopaulo.sp.gov.br/fale-conosco/comunicar-erros/" target="_blank"><img
+                                class="govsp-acessibilidade"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-error-report.png"
+                                alt="Comunicar um erro"></a>
+                    </nav>
+                </div>
+                <button class="govsp-kebab" id="govsp-kebab" aria-expanded="false"><img
+                        src="https://saopaulo.sp.gov.br/barra-govsp/img/dots-menu.png" alt="Menu"></button>
+
+                <ul class="govsp-dropdown vs3" id="govsp-dropdown" aria-hidden="true">
+
+                    <li><a class="govsp-social" role="button" href="http://bit.ly/govspnozap"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-whatsapp.png"
+                                alt="Whatsapp Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.flickr.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-flickr.png"
+                                alt="Flickr Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.linkedin.com/company/governosp/"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-linkedin.png"
+                                alt="Linkedin Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.tiktok.com/@governosp"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-tiktok.png"
+                                alt="TikTok Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.twitter.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-twitter.png"
+                                alt="Twitter Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.youtube.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-youtube.png"
+                                alt="Youtube Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.instagram.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-insta.png"
+                                alt="Instagram Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.facebook.com/governosp/"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-facebook.png"
+                                alt="Facebook Governo do Estado de SP" /></a></li>
+
+                    <li>
+                        <p class="govsp-social">/governosp</p>
+                    </li>
+                </ul>
+            </div>
+
+            <script src="https://saopaulo.sp.gov.br/barra-govsp/js/script-top-v2.js?vs=3.0"></script>
+            <noscript>
+                Seu navegador não tem suporte a JavaScript ou está desativado!</noscript>
+        </section>
+        <p>
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="menu-item">
+                            <a href="{% url 'estoque' %}">
+                                <i class="fas fa-tint fa-3x mb-3"></i> <!-- fas fa-box-open fa-3x mb-3 -->
+                                <h4>Estoque</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <div class="menu-item">
+                            <a href="{% url 'tabela' %}">
+                                <i class="fas fa-clipboard-list fa-3x mb-3"></i>
+                                <h4>Registros</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <div class="menu-item">
+                            <a href="{% url 'graficos' %}">
+                                <i class="fas fa-chart-bar fa-3x mb-3"></i>
+                                <h4>Gráficos</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <div class="menu-item">
+                            <a href="{% url 'mapa' %}">
+                                <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
+                                <h4>Mapa</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="mt-5">Estoque de Sangue</h1>
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <!-- Alterado para col-md-12 para ocupar toda a largura em dispositivos pequenos -->
+                    <form method="post" id="blood-form">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="hemocentro" class="form-label">Hemocentro</label>
+                            <select class="form-select" id="hemocentro" name="hemocentro">
+                                <option selected disabled>Selecione um hemocentro</option>
+                                <option value="FUNDAÇÃO PRÓ-SANGUE">FUNDAÇÃO PRÓ-SANGUE</option>
+                                <option value="UNIFESP">UNIFESP</option>
+                                <option value="SANTA CASA">SANTA CASA</option>
+                                <option value="COLSAN">COLSAN</option>
+                                <option value="UNICAMP">UNICAMP</option>
+                                <option value="RIBEIRÃO PRETO">RIBEIRÃO PRETO</option>
+                                <option value="SÃO JOSÉ DO RIO PRETO">SÃO JOSÉ DO RIO PRETO</option>
+                                <option value="MARILIA">MARILIA</option>
+                                <option value="BOTUCATU">BOTUCATU</option>
+                            </select>
+                        </div>
+                        <!-- Adicione os campos de Data e Total de Bolsas Coletadas dentro do form -->
+                        <div id="data-field" class="mb-3" style="display: none;">
+                            <label for="data" class="form-label">Data</label>
+                            <input type="date" class="form-control" id="data" name="data">
+                        </div>
+
+                        <div class="d-flex">
+                            <div id="bolsas-coletada" class="mb-3 flex-fill me-3" style="display: none;">
+                                <label for="bolsas-coletada" class="form-label">Bolsas Coletadas</label>
+                                <input type="number" class="form-control" id="bolsas-coletada" name="bolsas-coletada"
+                                    placeholder="Informe a quantidade de Bolsas coletadas no dia">
+                            </div>
+
+                            <div id="bolsas-utilizada" class="mb-3 flex-fill" style="display: none;">
+                                <label for="bolsas-utilizada" class="form-label">Bolsas Utilizadas</label>
+                                <input type="number" class="form-control" id="bolsas-utilizada" name="bolsas-utilizada"
+                                    placeholder="Informe a quantidade de Bolsas utilizadas no dia">
+                            </div>
+                        </div>
+
+                        <div id="blood-types"></div>
+                        <button id="btn-salvar" type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
+                            Salvar</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#hemocentro').change(function() {
-                var selectedHemocentro = $(this).val();
-                
-                // Aqui você pode fazer uma requisição AJAX para obter os tipos sanguíneos do hemocentro selecionado
-                // Em seguida, adicione os tipos sanguíneos ao #blood-types com caixas de entrada
-                // Exemplo de requisição AJAX:
-                // $.ajax({
-                //     url: 'url_do_backend_para_obter_tipos_sanguineos',
-                //     method: 'GET',
-                //     data: { hemocentro: selectedHemocentro },
-                //     success: function(response) {
-                //         // Adicione os tipos sanguíneos ao #blood-types
-                //         $('#blood-types').html(response);
-                //     },
-                //     error: function(xhr, status, error) {
-                //         console.error(error);
-                //     }
-                // });
-                // Por enquanto, vou simular a adição dos tipos sanguíneos:
-                var bloodTypesHTML = '';
-                var bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-                bloodTypes.forEach(function(bloodType) {
-                    bloodTypesHTML += '<div class="mb-3">';
-                    bloodTypesHTML += '<label for="' + bloodType + '" class="form-label">' + bloodType + '</label>';
-                    bloodTypesHTML += '<div class="row">';
-                    bloodTypesHTML += '<div class="col">';
-                    bloodTypesHTML += '<input type="number" class="form-control blood-stock" id="' + bloodType + '_estoque_atual" name="' + bloodType + '_estoque_atual" placeholder="Estoque Atual">';
-                    bloodTypesHTML += '</div>';
-                    bloodTypesHTML += '<div class="col">';
-                    bloodTypesHTML += '<input type="number" class="form-control blood-stock" id="' + bloodType + '_estoque_minimo" name="' + bloodType + '_estoque_minimo" placeholder="Estoque Mínimo">';
-                    bloodTypesHTML += '</div>';
-                    bloodTypesHTML += '</div>';
-                    bloodTypesHTML += '</div>';
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- jQuery -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#hemocentro').change(function () {
+                    var selectedHemocentro = $(this).val();
+
+                    // Aqui você pode fazer uma requisição AJAX para obter os tipos sanguíneos do hemocentro selecionado
+                    // Em seguida, adicione os tipos sanguíneos ao #blood-types com caixas de entrada
+                    // Exemplo de requisição AJAX:
+                    // $.ajax({
+                    //     url: 'url_do_backend_para_obter_tipos_sanguineos',
+                    //     method: 'GET',
+                    //     data: { hemocentro: selectedHemocentro },
+                    //     success: function(response) {
+                    //         // Adicione os tipos sanguíneos ao #blood-types
+                    //         $('#blood-types').html(response);
+                    //     },
+                    //     error: function(xhr, status, error) {
+                    //         console.error(error);
+                    //     }
+                    // });
+                    // Por enquanto, vou simular a adição dos tipos sanguíneos:
+                    var bloodTypesHTML = '';
+                    var bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+                    bloodTypes.forEach(function (bloodType) {
+                        bloodTypesHTML += '<div class="mb-3">';
+                        bloodTypesHTML += '<label for="' + bloodType + '" class="form-label">' + bloodType + '</label>';
+                        bloodTypesHTML += '<div class="row">';
+                        bloodTypesHTML += '<div class="col">';
+                        bloodTypesHTML += '<input type="number" class="form-control blood-stock" id="' + bloodType + '_estoque_atual" name="' + bloodType + '_estoque_atual" placeholder="Estoque Atual">';
+                        bloodTypesHTML += '</div>';
+                        bloodTypesHTML += '<div class="col">';
+                        bloodTypesHTML += '<input type="number" class="form-control blood-stock" id="' + bloodType + '_estoque_minimo" name="' + bloodType + '_estoque_minimo" placeholder="Estoque Mínimo">';
+                        bloodTypesHTML += '</div>';
+                        bloodTypesHTML += '</div>';
+                        bloodTypesHTML += '</div>';
+
+                    });
+                    $('#blood-types').html(bloodTypesHTML);
+
+                    // Exibir os campos de data e total de coleta após selecionar o hemocentro
+                    $('#data-field').show();
+                    $('#bolsas-coletada').show();
+                    $('#bolsas-utilizada').show();
+
+                    // Exibir o botão de salvar depois de selecionar o hemocentro
+                    $('#btn-salvar').show();
                 });
-                $('#blood-types').html(bloodTypesHTML);
 
-                // Exibir o botão de salvar depois de selecionar o hemocentro
-                $('#btn-salvar').show();
-            });
+                $('#blood-form').submit(function (event) {
+                    event.preventDefault();
 
-            $('#blood-form').submit(function(event) {
-                event.preventDefault();
-                
-                // Aqui você pode enviar os dados para o backend
-                // Por exemplo, utilizando AJAX:
-                var formData = $(this).serialize();
-                $.ajax({
-                    url: '{% url "estoque" %}', // Use o URL de sua view para salvar os dados
-                    method: 'POST',
-                    data: formData,
-                    success: function(response) {
-                        console.log(response);
-                        // Exibir mensagem de sucesso, limpar formulário, etc.
-                    },
-                    error: function(xhr, status, error) {
-                        console.error(error);
-                        // Exibir mensagem de erro, se necessário
-                    }
+                    // Aqui você pode enviar os dados para o backend
+                    // Por exemplo, utilizando AJAX:
+                    var formData = $(this).serialize();
+                    $.ajax({
+                        url: '{% url "estoque" %}', // Use o URL de sua view para salvar os dados
+                        method: 'POST',
+                        data: formData,
+                        success: function (response) {
+                            console.log(response);
+                            // Exibir mensagem de sucesso, limpar formulário, etc.
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(error);
+                            // Exibir mensagem de erro, se necessário
+                        }
+                    });
+
+                    // Limpar os inputs após o envio
+                    $(this).trigger("reset");
                 });
-                
-                // Limpar os inputs após o envio
-                $(this).trigger("reset");
             });
-        });
-    </script>
+        </script>
 
+        <section id="govsp-rodape">
+            <div class="container">
+                <!--
+                <div class="linha-botoes">
+                    <div class="coluna-4">
+                        <a href="https://www.ouvidoria.sp.gov.br/Portal/Default.aspx"
+                            class="btn btn-model">Ouvidoria</a>
+                    </div>
+
+                    <div class="coluna-4">
+                        <a href="http://www.transparencia.sp.gov.br/" class="btn btn-model">Transparência</a>
+                    </div>
+
+                    <div class="coluna-4">
+                        <a href="http://www.sic.sp.gov.br/" class="btn btn-model">SIC</a>
+                    </div>
+                </div>
+            </div> -->
+
+                <div class="container rodape">
+                    <div class="logo-rodape">
+                        <a href="https://www.saopaulo.sp.gov.br/">
+                            <img src="https://www.saopaulo.sp.gov.br/barra-govsp/img/logo-rodape-governo-do-estado-sp.png"
+                                alt="site do Governo de São Paulo" width="206" height="38">
+                        </a>
+                    </div>
+
+                </div>
+        </section>
 </body>
+
 </html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de São Paulo</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Custom CSS -->
+    <style>
+        #map {
+            height: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 0;
+        }
+
+        .contador {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            max-width: 1000px;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .contador-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .contador-titulo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .contador-valor {
+            font-size: 24px;
+        }
+
+        #legenda {
+            position: absolute;
+            bottom: 300px;
+            right: 50px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .legenda-item {
+            margin-bottom: 10px;
+        }
+
+        .legenda-color {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Estilos responsivos */
+        @media only screen and (max-width: 768px) {
+            #legenda {
+                bottom: 10px;
+                right: auto;
+                left: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contador">
+        <div class="contador-item">
+            <div class="contador-titulo">Dengue</div>
+            <div class="contador-valor" id="dengue-contador">0</div>
+        </div>
+        <div class="contador-item">
+            <div class="contador-titulo">Zika</div>
+            <div class="contador-valor" id="zika-contador">0</div>
+        </div>
+        <div class="contador-item">
+            <div class="contador-titulo">Chikungunya</div>
+            <div class="contador-valor" id="chikungunya-contador">0</div>
+        </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="legenda">
+        <div class="legenda-item">
+            <div class="legenda-color" style="background-color: red;"></div>
+            Atividade Aumentada
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-color" style="background-color: orange;"></div>
+            Transmissão
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-color" style="background-color: yellow;"></div>
+            Atenção
+        </div>
+        <div class="legenda-item">
+            <div class="legenda-color" style="background-color: green;"></div>
+            Baixo Risco
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Coordenadas do sudoeste e nordeste de São Paulo para definir o foco apenas no estado
+        var bounds = [
+            [-25.583, -53.109], // Sudoeste de São Paulo
+            [-19.766, -44.196]  // Nordeste de São Paulo
+        ];
+
+        // Criar o mapa Leaflet focado apenas em São Paulo
+        var map = L.map('map', {
+            maxBounds: bounds,
+            minZoom: 7 // Ajuste o nível mínimo de zoom para mostrar apenas o estado de São Paulo
+        }).fitBounds(bounds);
+
+        // Adicionar o mapa base do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Carregar os limites dos municípios de São Paulo usando o GeoJSON
+        fetch('../static/SP_Municipios_2022.json')
+            .then(response => response.json())
+            .then(data => {
+                L.geoJSON(data, {
+                    style: function (feature) {
+                        var casosDengue = randomNumber(0, 3000); // Gerar casos de dengue aleatórios
+                        updateCounter('dengue-contador', casosDengue); // Atualizar contador de dengue
+                        if (casosDengue >= 2000) {
+                            return { fillColor: 'red', color: 'blue', weight: 1, fillOpacity: 0.7 };
+                        } else if (casosDengue >= 1000) {
+                            return { fillColor: 'orange', color: 'blue', weight: 1, fillOpacity: 0.7 };
+                        } else if (casosDengue >= 100) {
+                            return { fillColor: 'yellow', color: 'blue', weight: 1, fillOpacity: 0.7 };
+                        } else {
+                            return { fillColor: 'green', color: 'blue', weight: 1, fillOpacity: 0.7 };
+                        }
+                    },
+                    onEachFeature: function (feature, layer) {
+                        layer.on({
+                            mouseover: function (e) {
+                                var layer = e.target;
+                                var casosDengue = randomNumber(0, 3000); // Simular casos de dengue aleatórios
+                                updateCounter('dengue-contador', casosDengue); // Atualizar contador de dengue
+                                var popupContent = "<b>" + feature.properties.NM_MUN + "</b><br>Casos: " + casosDengue;
+                                layer.bindPopup(popupContent).openPopup();
+                            }
+                        });
+                    }
+                }).addTo(map);
+            });
+
+        // Função para atualizar o valor de um contador
+        function updateCounter(counterId, value) {
+            var counterElement = document.getElementById(counterId);
+            if (counterElement) {
+                counterElement.textContent = value;
+            }
+        }
+
+        // Função para gerar números aleatórios dentro de um intervalo específico
+        function randomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+    </script>
+</body>
+
+</html>

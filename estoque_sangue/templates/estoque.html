@@ -10,7 +10,7 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css"
         href="https://saopaulo.sp.gov.br/barra-govsp/css/top-padrao-govsp-v2.min.css?vs=3.0">
@@ -19,7 +19,7 @@
 
     <style>
         body {
-            font-family: 'Montserrat','Roboto', sans-serif;
+            font-family: 'Montserrat', 'Roboto', sans-serif;
             background-color: #FFFFFF;
             color: #495057;
             padding: 20px;
@@ -260,6 +260,26 @@
                                 <option value="BOTUCATU">BOTUCATU</option>
                             </select>
                         </div>
+                        <!-- Adicione os campos de Data e Total de Bolsas Coletadas dentro do form -->
+                        <div id="data-field" class="mb-3" style="display: none;">
+                            <label for="data" class="form-label">Data</label>
+                            <input type="date" class="form-control" id="data" name="data">
+                        </div>
+
+                        <div class="d-flex">
+                            <div id="bolsas-coletada" class="mb-3 flex-fill me-3" style="display: none;">
+                                <label for="bolsas-coletada" class="form-label">Bolsas Coletadas</label>
+                                <input type="number" class="form-control" id="bolsas-coletada" name="bolsas-coletada"
+                                    placeholder="Informe a quantidade de Bolsas coletadas no dia">
+                            </div>
+
+                            <div id="bolsas-utilizada" class="mb-3 flex-fill" style="display: none;">
+                                <label for="bolsas-utilizada" class="form-label">Bolsas Utilizadas</label>
+                                <input type="number" class="form-control" id="bolsas-utilizada" name="bolsas-utilizada"
+                                    placeholder="Informe a quantidade de Bolsas utilizadas no dia">
+                            </div>
+                        </div>
+
                         <div id="blood-types"></div>
                         <button id="btn-salvar" type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
                             Salvar</button>
@@ -307,8 +327,14 @@
                         bloodTypesHTML += '</div>';
                         bloodTypesHTML += '</div>';
                         bloodTypesHTML += '</div>';
+
                     });
                     $('#blood-types').html(bloodTypesHTML);
+
+                    // Exibir os campos de data e total de coleta após selecionar o hemocentro
+                    $('#data-field').show();
+                    $('#bolsas-coletada').show();
+                    $('#bolsas-utilizada').show();
 
                     // Exibir o botão de salvar depois de selecionar o hemocentro
                     $('#btn-salvar').show();
@@ -342,7 +368,7 @@
 
         <section id="govsp-rodape">
             <div class="container">
-            <!--
+                <!--
                 <div class="linha-botoes">
                     <div class="coluna-4">
                         <a href="https://www.ouvidoria.sp.gov.br/Portal/Default.aspx"
@@ -359,15 +385,15 @@
                 </div>
             </div> -->
 
-            <div class="container rodape">
-                <div class="logo-rodape">
-                    <a href="https://www.saopaulo.sp.gov.br/">
-                        <img src="https://www.saopaulo.sp.gov.br/barra-govsp/img/logo-rodape-governo-do-estado-sp.png"
-                            alt="site do Governo de São Paulo" width="206" height="38">
-                    </a>
-                </div>
+                <div class="container rodape">
+                    <div class="logo-rodape">
+                        <a href="https://www.saopaulo.sp.gov.br/">
+                            <img src="https://www.saopaulo.sp.gov.br/barra-govsp/img/logo-rodape-governo-do-estado-sp.png"
+                                alt="site do Governo de São Paulo" width="206" height="38">
+                        </a>
+                    </div>
 
-            </div>
+                </div>
         </section>
 </body>
 

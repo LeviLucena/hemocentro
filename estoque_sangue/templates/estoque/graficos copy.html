@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://saopaulo.sp.gov.br/barra-govsp/css/top-padrao-govsp-v2.min.css?vs=3.0">
+    <link rel="stylesheet" type="text/css"
+        href="https://www.saopaulo.sp.gov.br/barra-govsp/css/rodape-padrao-govsp.min.css">
+
+    <style>
+        body {
+            font-family: 'Montserrat', 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+            color: #495057;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            /* Define a largura máxima do conteúdo */
+            padding: 0 15px;
+            /* Adiciona um espaço nas laterais do conteúdo */
+        }
+
+        h1 {
+            color: #343a40;
+            text-align: center;
+        }
+
+        .chart-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: 700;
+            color: #6c757d;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            width: 100%;
+            /* Faz o botão ocupar toda a largura do seu contêiner */
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        /* Estilos para o rodapé */
+        .footer {
+            position: relative;
+            /* Define o posicionamento relativo */
+            bottom: 0;
+            /* Alinha o rodapé na parte inferior */
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            color: white;
+            height: 100%;
+            /* Define a altura igual a 100% */
+            margin-top: 50px;
+            /* Ajusta o espaço entre o rodapé e o quadro de login */
+        }
+
+        .footer img {
+            max-height: 100%;
+            /* Define a altura máxima igual a 100% */
+        }
+
+        /* Ocultar o botão inicialmente */
+        #btn-salvar {
+            display: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container header">
+        <section class="govsp-topo">
+            <div id="govsp-topbarGlobal" class="blu-e">
+                <div id="topbarGlobal">
+                    <div id="topbarLink" class="govsp-black">
+                        <div class="govsp-portal">
+                            <a href="https://www.saopaulo.sp.gov.br"
+                                title="nova guia Site Governo do Estado de São Paulo" target="_blank"><img
+                                    src="https://saopaulo.sp.gov.br/barra-govsp/img/logo-governo-do-estado-sp.png"
+                                    alt="logomarca Governo de São Paulo" height="38" class="logo">
+                            </a>
+                        </div>
+                    </div>
+                    <nav class="govsp-navbar govsp-navbar-expand-lg">
+                        <a class="govsp-social" href="http://bit.ly/govspnozap"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-whatsapp.png"
+                                alt="Whatsapp Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.flickr.com/governosp/"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-flickr.png"
+                                alt="Flickr Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.linkedin.com/company/governosp/"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-linkedin.png"
+                                alt="Linkedin Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.tiktok.com/@governosp"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-tiktok.png"
+                                alt="TikTok Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.youtube.com/governosp/"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-youtube.png"
+                                alt="Youtube Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.twitter.com/governosp/"><img class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-twitter.png"
+                                alt="Twitter Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.instagram.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-insta.png"
+                                alt="Instagram Governo do Estado de SP" /></a>
+
+                        <a class="govsp-social" href="https://www.facebook.com/governosp/"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-facebook.png"
+                                alt="Facebook Governo do Estado de SP" /></a>
+
+                        <p class="govsp-social">/governosp</p>
+
+                        <a class="govsp-acessibilidade" title="nova guia"
+                            href="https://www.saopaulo.sp.gov.br/fale-conosco/comunicar-erros/" target="_blank"><img
+                                class="govsp-acessibilidade"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-error-report.png"
+                                alt="Comunicar um erro"></a>
+                    </nav>
+                </div>
+                <button class="govsp-kebab" id="govsp-kebab" aria-expanded="false"><img
+                        src="https://saopaulo.sp.gov.br/barra-govsp/img/dots-menu.png" alt="Menu"></button>
+
+                <ul class="govsp-dropdown vs3" id="govsp-dropdown" aria-hidden="true">
+
+                    <li><a class="govsp-social" role="button" href="http://bit.ly/govspnozap"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-whatsapp.png"
+                                alt="Whatsapp Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.flickr.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-flickr.png"
+                                alt="Flickr Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.linkedin.com/company/governosp/"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-linkedin.png"
+                                alt="Linkedin Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.tiktok.com/@governosp"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-tiktok.png"
+                                alt="TikTok Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.twitter.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-twitter.png"
+                                alt="Twitter Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.youtube.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-youtube.png"
+                                alt="Youtube Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.instagram.com/governosp/"><img
+                                class="govsp-icon-social" src="https://saopaulo.sp.gov.br/barra-govsp/img/i-insta.png"
+                                alt="Instagram Governo do Estado de SP" /></a></li>
+
+                    <li><a class="govsp-social" role="button" href="https://www.facebook.com/governosp/"><img
+                                class="govsp-icon-social"
+                                src="https://saopaulo.sp.gov.br/barra-govsp/img/i-facebook.png"
+                                alt="Facebook Governo do Estado de SP" /></a></li>
+
+                    <li>
+                        <p class="govsp-social">/governosp</p>
+                    </li>
+                </ul>
+            </div>
+
+            <script src="https://saopaulo.sp.gov.br/barra-govsp/js/script-top-v2.js?vs=3.0"></script>
+            <noscript>
+                Seu navegador não tem suporte a JavaScript ou está desativado!</noscript>
+        </section>
+        <p>
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col text-center">
+                        <div class="menu-item">
+                            <a href="{% url 'estoque' %}">
+                                <i class="fas fa-tint fa-3x mb-3"></i> <!-- fas fa-box-open fa-3x mb-3 -->
+                                <h4>Estoque</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <div class="menu-item">
+                            <a href="{% url 'tabela' %}">
+                                <i class="fas fa-clipboard-list fa-3x mb-3"></i>
+                                <h4>Registros</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <div class="menu-item">
+                            <a href="{% url 'graficos' %}">
+                                <i class="fas fa-chart-bar fa-3x mb-3"></i>
+                                <h4>Gráficos</h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <div class="menu-item">
+                            <a href="{% url 'mapa' %}">
+                                <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
+                                <h4>Mapa</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="mt-5">Gráficos</h1>
+            <div class="form-group">
+                <label for="hemocentro">Selecione um hemocentro:</label>
+                <select class="form-select" id="hemocentro">
+                    <option selected disabled>Selecione um hemocentro</option>
+                    <option value="FUNDAÇÃO PRÓ-SANGUE">FUNDAÇÃO PRÓ-SANGUE</option>
+                    <option value="UNIFESP">UNIFESP</option>
+                    <option value="SANTA CASA">SANTA CASA</option>
+                    <option value="COLSAN">COLSAN</option>
+                    <option value="UNICAMP">UNICAMP</option>
+                    <option value="RIBEIRÃO PRETO">RIBEIRÃO PRETO</option>
+                    <option value="SÃO JOSÉ DO RIO PRETO">SÃO JOSÉ DO RIO PRETO</option>
+                    <option value="MARILIA">MARILIA</option>
+                    <option value="BOTUCATU">BOTUCATU</option>
+                </select>
+                <p>
+            </div>
+            <label for="data">Selecione um intervalo de datas:</label>
+            <div class="row">
+                <div class="col">
+                    <input type="date" id="dataInicio" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="date" id="dataFim" class="form-control">
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <!-- Gráfico de linha -->
+                <canvas id="myLineChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <!-- Gráfico de barras -->
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function randomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
+
+            document.getElementById('hemocentro').addEventListener('change', function () {
+                var hemocentro = this.value;
+                var dataInicio = document.getElementById('dataInicio').value;
+                var dataFim = document.getElementById('dataFim').value;
+                var dataInicioObj = new Date(dataInicio);
+                var dataFimObj = new Date(dataFim);
+                var intervaloDias = (dataFimObj - dataInicioObj) / (1000 * 60 * 60 * 24);
+                if (intervaloDias > 31) {
+                    alert('Por favor, selecione um intervalo menor do que 31 dias.');
+                    return;
+                }
+                var dadosColetaDoDia = [];
+                var dadosBolsaUtilizada = []; // Adicionando um array para os dados da linha "Bolsa Utilizada no Dia"
+                for (var i = 0; i < intervaloDias; i++) {
+                    dadosColetaDoDia.push(randomNumber(5, 50));
+                    dadosBolsaUtilizada.push(randomNumber(1, 20)); // Gerando dados para "Bolsa Utilizada no Dia"
+                }
+                myLineChart.data.labels = calcularLabels(dataInicioObj, intervaloDias);
+                myLineChart.data.datasets[0].data = dadosColetaDoDia;
+                myLineChart.data.datasets[1].data = dadosBolsaUtilizada; // Atribuindo os dados gerados para a linha "Bolsa Utilizada no Dia"
+                myLineChart.update();
+            });
+
+            function calcularLabels(dataInicio, intervaloDias) {
+                var labels = [];
+                for (var i = 0; i < intervaloDias; i++) {
+                    var data = new Date(dataInicio);
+                    data.setDate(dataInicio.getDate() + i);
+                    labels.push(data.toLocaleDateString());
+                }
+                return labels;
+            }
+
+            var ctxLine = document.getElementById('myLineChart').getContext('2d');
+            var myLineChart = new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: [], // Vazio para ser preenchido dinamicamente
+                    datasets: [{
+                        label: 'Bolsa Coletada',
+                        data: [],
+                        backgroundColor: 'rgba(0, 99, 0, 0.2)',
+                        borderColor: 'rgba(00, 80, 00, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Bolsa Utilizada',
+                        data: [],
+                        backgroundColor: 'rgba(255, 162, 235, 0.2)',
+                        borderColor: 'rgba(255, 24, 24, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+                    datasets: [{
+                        label: 'Estoque Atual',
+                        data: [12, 19, 3, 5, 2, 3, 7, 8],
+                        backgroundColor: 'rgba(0, 99, 0, 0.2)',
+                        borderColor: 'rgba(00, 80, 00, 1)',
+                        borderWidth: 1
+                    }, {
+                        label: 'Estoque Mínimo',
+                        data: [7, 11, 5, 8, 3, 6, 4, 9],
+                        backgroundColor: 'rgba(255, 162, 235, 0.2)',
+                        borderColor: 'rgba(255, 24, 24, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+
+        <section id="govsp-rodape">
+            <div class="container">
+                <!--
+                <div class="linha-botoes">
+                    <div class="coluna-4">
+                        <a href="https://www.ouvidoria.sp.gov.br/Portal/Default.aspx"
+                            class="btn btn-model">Ouvidoria</a>
+                    </div>
+
+                    <div class="coluna-4">
+                        <a href="http://www.transparencia.sp.gov.br/" class="btn btn-model">Transparência</a>
+                    </div>
+
+                    <div class="coluna-4">
+                        <a href="http://www.sic.sp.gov.br/" class="btn btn-model">SIC</a>
+                    </div>
+                </div>
+            </div> -->
+
+                <div class="container rodape">
+                    <div class="logo-rodape">
+                        <a href="https://www.saopaulo.sp.gov.br/">
+                            <img src="https://www.saopaulo.sp.gov.br/barra-govsp/img/logo-rodape-governo-do-estado-sp.png"
+                                alt="site do Governo de São Paulo" width="206" height="38">
+                        </a>
+                    </div>
+
+                </div>
+        </section>
+</body>
+
+</html>
