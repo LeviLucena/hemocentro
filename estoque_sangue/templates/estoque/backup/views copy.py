@@ -57,8 +57,12 @@ def estoque_view(request):
     else:
         form = EstoqueSangueForm()
         
-
-    return render(request, 'estoque.html', {'form': form, 'botao_salvar': True})
+            # Defina a variável mostrar_hemocentro com base na sua lógica
+    mostrar_hemocentro = True  # Por exemplo, vamos defini-la como True por enquanto
+    mostrar_data_field = True  # Por exemplo, vamos defini-la como True por enquanto
+    mostrar_bolsas_field = True  # Por exemplo, vamos defini-la como True por enquanto
+    
+    return render(request, 'estoque.html', {'form': form, 'botao_salvar': True, 'mostrar_hemocentro': mostrar_hemocentro,  'mostrar_data_field': mostrar_data_field, 'mostrar_bolsas_field': mostrar_bolsas_field})
     
     
 

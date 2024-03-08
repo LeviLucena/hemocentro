@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estoque de Sangue</title>
+    <title>Mapa dos Hemocentros</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -18,6 +18,10 @@
         href="https://www.saopaulo.sp.gov.br/barra-govsp/css/rodape-padrao-govsp.min.css">
 
     <style>
+        #map {
+            height: 600px;
+        }
+
         body {
             font-family: 'Montserrat', 'Roboto', sans-serif;
             background-color: #FFFFFF;
@@ -41,50 +45,10 @@
         h1 {
             color: #343a40;
             text-align: center;
-            /* Centraliza o título */
         }
 
-        .form-label {
-            font-weight: 700;
-            color: #6c757d;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            width: 100%;
-            /* Faz o botão ocupar toda a largura do seu contêiner */
-        }
-
-        .btn-primary:hover {
-            background-color: #0069d9;
-            border-color: #0062cc;
-        }
-
-        /* Estilos para o rodapé */
-        .footer {
-            position: relative;
-            /* Define o posicionamento relativo */
-            bottom: 0;
-            /* Alinha o rodapé na parte inferior */
-            width: 100%;
-            text-align: center;
-            padding: 10px;
-            color: white;
-            height: 100%;
-            /* Define a altura igual a 100% */
-            margin-top: 50px;
-            /* Ajusta o espaço entre o rodapé e o quadro de login */
-        }
-
-        .footer img {
-            max-height: 100%;
-            /* Define a altura máxima igual a 100% */
-        }
-
-        /* Ocultar o botão inicialmente */
-        #btn-salvar {
-            display: none;
+        .table-container {
+            margin-top: 30px;
         }
 
         a {
@@ -239,129 +203,73 @@
                     </div>
                 </div>
             </div>
-            <h1 class="mt-5">Estoque de Sangue</h1>
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <!-- Alterado para col-md-12 para ocupar toda a largura em dispositivos pequenos -->
-                    <form method="post" id="blood-form" action="{% url 'estoque' %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label for="hemocentro" class="form-label">Hemocentro</label>
-                            <select class="form-select" id="hemocentro" name="hemocentro">
-                                <option selected disabled>Selecione um hemocentro</option>
-                                {% for value, label in form.hemocentro.field.choices %}
-                                <option value="{{ value }}">{{ label }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-
-                        <!-- Adicione os campos de Data e Total de Bolsas Coletadas dentro do form -->
-                        <div id="data-field" class="mb-3" style="display: none;">
-                            <label for="data" class="form-label">Data</label>
-                            <input type="date" class="form-control" id="data" name="data">
-                        </div>
-
-                        <div class="d-flex">
-                            <div id="bolsas-coletada" class="mb-3 flex-fill me-3" style="display: none;">
-                                <label for="bolsas-coletada" class="form-label">Bolsas Coletadas</label>
-                                <input type="number" class="form-control" id="bolsas-coletada" name="bolsas-coletada"
-                                    placeholder="Informe a quantidade de Bolsas coletadas no dia">
-                            </div>
-
-                            <div id="bolsas-utilizada" class="mb-3 flex-fill" style="display: none;">
-                                <label for="bolsas-utilizada" class="form-label">Bolsas Utilizadas</label>
-                                <input type="number" class="form-control" id="bolsas-utilizada" name="bolsas-utilizada"
-                                    placeholder="Informe a quantidade de Bolsas utilizadas no dia">
-                            </div>
-                        </div>
-
-                        <div id="blood-types"></div>
-
-                        {% if botao_salvar %}
-                        <button id="btn-salvar" type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
-                            Salvar</button>
-                        {% endif %}
-                    </form>
-                </div>
-            </div>
+            <h1 class="mt-5">Mapa dos Hemocentros</h1>
+            <div id="map"></div>
         </div>
 
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- jQuery -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
-            $(document).ready(function () {
-                $('#hemocentro').change(function () {
-                    var selectedHemocentro = $(this).val();
 
-                    // Aqui você pode fazer uma requisição AJAX para obter os tipos sanguíneos do hemocentro selecionado
-                    // Em seguida, adicione os tipos sanguíneos ao #blood-types com caixas de entrada
-                    // Exemplo de requisição AJAX:
-                    // $.ajax({
-                    //     url: 'url_do_backend_para_obter_tipos_sanguineos',
-                    //     method: 'GET',
-                    //     data: { hemocentro: selectedHemocentro },
-                    //     success: function(response) {
-                    //         // Adicione os tipos sanguíneos ao #blood-types
-                    //         $('#blood-types').html(response);
-                    //     },
-                    //     error: function(xhr, status, error) {
-                    //         console.error(error);
-                    //     }
-                    // });
-                    // Por enquanto, vou simular a adição dos tipos sanguíneos:
-                    var bloodTypesHTML = '';
-                    var bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-                    bloodTypes.forEach(function (bloodType) {
-                        bloodTypesHTML += '<div class="mb-3">';
-                        bloodTypesHTML += '<label for="' + bloodType + '" class="form-label">' + bloodType + '</label>';
-                        bloodTypesHTML += '<div class="row">';
-                        bloodTypesHTML += '<div class="col">';
-                        bloodTypesHTML += '<input type="number" class="form-control blood-stock" id="' + bloodType + '_estoque_atual" name="' + bloodType + '_estoque_atual" placeholder="Estoque Atual">';
-                        bloodTypesHTML += '</div>';
-                        bloodTypesHTML += '<div class="col">';
-                        bloodTypesHTML += '<input type="number" class="form-control blood-stock" id="' + bloodType + '_estoque_minimo" name="' + bloodType + '_estoque_minimo" placeholder="Estoque Mínimo">';
-                        bloodTypesHTML += '</div>';
-                        bloodTypesHTML += '</div>';
-                        bloodTypesHTML += '</div>';
+                // Coordenadas do sudoeste e nordeste de São Paulo para definir o foco apenas no estado
+        var bounds = [
+            [-25.583, -53.109], // Sudoeste de São Paulo
+            [-19.766, -44.196]  // Nordeste de São Paulo
+        ];
+        
+            // Função para gerar números aleatórios dentro de um intervalo específico
+            function randomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
+            }
 
-                    });
-                    $('#blood-types').html(bloodTypesHTML);
+            // Dados dos hemocentros e seus estoques
+            var hemocentros = [
+                { nome: "FUNDAÇÃO PRÓ-SANGUE", latitude: -23.556994511528096, longitude: -46.66879108834876 },
+                { nome: "UNIFESP", latitude: -23.594616822258832, longitude: -46.64486837300925 },
+                { nome: "SANTA CASA", latitude: -23.54377, longitude: -46.64998 },
+                { nome: "COLSAN", latitude: -23.569116, longitude: -46.704055 },
+                { nome: "UNICAMP", latitude: -22.818229, longitude: -47.064201 },
+                { nome: "RIBEIRÃO PRETO", latitude: -21.177997, longitude: -47.810745 },
+                { nome: "SÃO JOSÉ DO RIO PRETO", latitude: -20.8226, longitude: -49.3804 },
+                { nome: "MARILIA", latitude: -22.2118, longitude: -49.9504 },
+                { nome: "BOTUCATU", latitude: -22.8876, longitude: -48.4468 }
 
-                    // Exibir os campos de data e total de coleta após selecionar o hemocentro
-                    $('#data-field').show();
-                    $('#bolsas-coletada').show();
-                    $('#bolsas-utilizada').show();
+                // Adicione mais hemocentros conforme necessário
+            ];
 
-                    // Exibir o botão de salvar depois de selecionar o hemocentro
-                    $('#btn-salvar').show();
-                });
+            // Criar o mapa Leaflet
+            var map = L.map('map').setView([-23.5505, -46.6333], 10); // Coordenadas de São Paulo como ponto central e zoom 10
 
-                $('#blood-form').submit(function (event) {
-                    event.preventDefault();
+            // Adicionar o mapa base do OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
 
-                    // Aqui você pode enviar os dados para o backend
-                    // Por exemplo, utilizando AJAX:
-                    var formData = $(this).serialize();
-                    $.ajax({
-                        url: '{% url "estoque" %}', // Use o URL de sua view para salvar os dados
-                        method: 'POST',
-                        data: formData,
-                        success: function (response) {
-                            console.log(response);
-                            // Exibir mensagem de sucesso, limpar formulário, etc.
-                        },
-                        error: function (xhr, status, error) {
-                            console.error(error);
-                            // Exibir mensagem de erro, se necessário
-                        }
-                    });
-
-                    // Limpar os inputs após o envio
-                    $(this).trigger("reset");
-                });
-            });
+            // Adicionar marcadores para cada hemocentro
+            hemocentros.forEach(function (hemocentro) {
+                var marker = L.marker([hemocentro.latitude, hemocentro.longitude]).addTo(map);
+                var popupContent = '<b>' + hemocentro.nome + '</b><br>';
+                popupContent += '<table class="table"><thead><tr><th>Tipo Sanguíneo</th><th>Estoque Atual</th><th>Estoque Mínimo</th></tr></thead><tbody>';
+                var tiposSanguineos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+                for (var i = 0; i < tiposSanguineos.length; i++) {
+                    var estoqueAtual = randomNumber(1, 50); // Gerar estoque atual aleatório
+                    var estoqueMinimo = randomNumber(1, 20); // Gerar estoque mínimo aleatório
+                    popupContent += '<tr><td>' + tiposSanguineos[i] + '</td><td>' + estoqueAtual + '</td><td>' + estoqueMinimo + '</td></tr>';
+                }
+            popupContent += '</tbody></table>';
+            marker.bindPopup(popupContent);
+            // Definir a cor do marcador com base no estoque mínimo
+            if (hemocentro.estoqueMinimo === 5) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            } else if (hemocentro.estoqueMinimo === 15) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            } else if (hemocentro.estoqueMinimo === 25) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            }
+        });
+            
         </script>
 
         <section id="govsp-rodape">

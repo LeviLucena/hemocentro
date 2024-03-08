@@ -1,0 +1,24 @@
+def estoque_view(request):
+    if request.method == 'POST':
+        form = EstoqueSangueForm(request.POST)
+        if form.is_valid():
+            # Processar o formulário se for válido
+            form.save()
+            # Redirecionar para uma página de sucesso ou faça o que for necessário
+    else:
+        form = EstoqueSangueForm()
+    
+    return render(request, 'estoque.html', {'form': form, 'botao_salvar': True})  # Adicionando 'botao_salvar' como True
+
+=====================================================
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if botao_salvar %}
+        <button type="submit">Salvar</button>
+    {% endif %}
+</form>
+
+
+

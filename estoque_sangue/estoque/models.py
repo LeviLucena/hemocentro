@@ -14,6 +14,9 @@ class Hemocentro(models.Model):
         ('BOTUCATU', 'BOTUCATU'),
     ]
     nome = models.CharField(max_length=100, choices=NOME_CHOICES)
+    
+    def __str__(self):
+        return self.nome  # Retorna o nome do hemocentro como uma representação de string
 
     class Meta:
         app_label = 'estoque'

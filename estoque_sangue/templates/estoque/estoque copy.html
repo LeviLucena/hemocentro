@@ -243,18 +243,23 @@
             <div class="row mt-4">
                 <div class="col-md-12">
                     <!-- Alterado para col-md-12 para ocupar toda a largura em dispositivos pequenos -->
-                    <form method="post" id="blood-form" action="{% url 'estoque' %}">
+                    <form method="post" id="blood-form">
                         {% csrf_token %}
                         <div class="mb-3">
                             <label for="hemocentro" class="form-label">Hemocentro</label>
                             <select class="form-select" id="hemocentro" name="hemocentro">
                                 <option selected disabled>Selecione um hemocentro</option>
-                                {% for value, label in form.hemocentro.field.choices %}
-                                <option value="{{ value }}">{{ label }}</option>
-                                {% endfor %}
+                                <option value="FUNDAÇÃO PRÓ-SANGUE">FUNDAÇÃO PRÓ-SANGUE</option>
+                                <option value="UNIFESP">UNIFESP</option>
+                                <option value="SANTA CASA">SANTA CASA</option>
+                                <option value="COLSAN">COLSAN</option>
+                                <option value="UNICAMP">UNICAMP</option>
+                                <option value="RIBEIRÃO PRETO">RIBEIRÃO PRETO</option>
+                                <option value="SÃO JOSÉ DO RIO PRETO">SÃO JOSÉ DO RIO PRETO</option>
+                                <option value="MARILIA">MARILIA</option>
+                                <option value="BOTUCATU">BOTUCATU</option>
                             </select>
                         </div>
-
                         <!-- Adicione os campos de Data e Total de Bolsas Coletadas dentro do form -->
                         <div id="data-field" class="mb-3" style="display: none;">
                             <label for="data" class="form-label">Data</label>
@@ -276,11 +281,8 @@
                         </div>
 
                         <div id="blood-types"></div>
-
-                        {% if botao_salvar %}
                         <button id="btn-salvar" type="submit" class="btn btn-primary"><i class="fas fa-save"></i>
                             Salvar</button>
-                        {% endif %}
                     </form>
                 </div>
             </div>

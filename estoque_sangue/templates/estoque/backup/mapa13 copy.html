@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa dos Hemocentros</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css"
+        href="https://saopaulo.sp.gov.br/barra-govsp/css/top-padrao-govsp-v2.min.css?vs=3.0">
+    <link rel="stylesheet" type="text/css"
+        href="https://www.saopaulo.sp.gov.br/barra-govsp/css/rodape-padrao-govsp.min.css">
+
+    <style>
+        #map {
+            height: 600px;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Roboto', sans-serif;
+            background-color: #FFFFFF;
+            color: #495057;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            /* Define a largura máxima do conteúdo */
+            padding: 0 15px;
+            /* Adiciona um espaço nas laterais do conteúdo */
+        }
+
+        h1 {
+            color: #343a40;
+            text-align: center;
+        }
+
+        .table-container {
+            margin-top: 30px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container header">
+        <!-- Seu código HTML anterior aqui -->
+
+        <!-- Seção do Mapa -->
+        <h1 class="mt-5">Mapa dos Hemocentros</h1>
+        <div id="map"></div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dados dos hemocentros e seus estoques
+        var hemocentros = [
+            { nome: "FUNDAÇÃO PRÓ-SANGUE", latitude: -23.556994511528096, longitude: -46.66879108834876 },
+            { nome: "UNIFESP", latitude: -23.594616822258832, longitude: -46.64486837300925 },
+            { nome: "SANTA CASA", latitude: -23.54377, longitude: -46.64998 },
+            { nome: "COLSAN", latitude: -23.569116, longitude: -46.704055 },
+            { nome: "UNICAMP", latitude: -22.818229, longitude: -47.064201 },
+            { nome: "RIBEIRÃO PRETO", latitude: -21.177997, longitude: -47.810745 },
+            { nome: "SÃO JOSÉ DO RIO PRETO", latitude: -20.8226, longitude: -49.3804 },
+            { nome: "MARILIA", latitude: -22.2118, longitude: -49.9504 },
+            { nome: "BOTUCATU", latitude: -22.8876, longitude: -48.4468 }
+        ];
+
+        // Criar o mapa Leaflet
+        var map = L.map('map').setView([-23.5505, -46.6333], 10); // Coordenadas de São Paulo como ponto central e zoom 10
+
+        // Adicionar o mapa base do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Adicionar marcadores para cada hemocentro
+        hemocentros.forEach(function (hemocentro) {
+            var marker = L.marker([hemocentro.latitude, hemocentro.longitude]).addTo(map);
+            var popupContent = '<b>' + hemocentro.nome + '</b><br>';
+            popupContent += '<table class="table"><thead><tr><th>Tipo Sanguíneo</th><th>Estoque Atual</th><th>Estoque Mínimo</th></tr></thead><tbody>';
+            var tiposSanguineos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+            for (var i = 0; i < tiposSanguineos.length; i++) {
+                var estoqueAtual = Math.floor(Math.random() * 50) + 1; // Gerar estoque atual aleatório
+                var estoqueMinimo = Math.floor(Math.random() * 50) + 1; // Gerar estoque mínimo aleatório
+                popupContent += '<tr><td>' + tiposSanguineos[i] + '</td><td>' + estoqueAtual + '</td><td>' + estoqueMinimo + '</td></tr>';
+            }
+            popupContent += '</tbody></table>';
+            marker.bindPopup(popupContent);
+            // Definir a cor do marcador com base no estoque mínimo
+            if (estoqueMinimo <= 5) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            } else if (estoqueMinimo <= 15) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            } else if (estoqueMinimo <= 25) {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            } else {
+                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+            }
+        });
+    </script>
+
+</body>
+
+</html>

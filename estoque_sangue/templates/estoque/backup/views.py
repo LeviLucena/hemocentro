@@ -1,4 +1,3 @@
-# estoque/views.py
 from django.shortcuts import render, redirect
 from .models import EstoqueSangue
 from .forms import EstoqueSangueForm
@@ -42,7 +41,7 @@ def inserir_registro(request):
             # Salvar o registro
             form.save()
             # Redirecionar para uma página de sucesso ou qualquer outra página desejada
-            return redirect('estoque.html')  # Substitua 'pagina_de_sucesso' pelo nome da sua rota de sucesso
+            return redirect('pagina_de_sucesso')  # Substitua 'pagina_de_sucesso' pelo nome da sua rota de sucesso
     else:
         form = EstoqueSangueForm()
     return render(request, 'inserir_registro.html', {'form': form})
@@ -54,13 +53,11 @@ def estoque_view(request):
             # Processar o formulário se for válido
             form.save()
             # Redirecionar para uma página de sucesso ou faça o que for necessário
+            return redirect('pagina_sucesso')
     else:
         form = EstoqueSangueForm()
-        
-
-    return render(request, 'estoque.html', {'form': form, 'botao_salvar': True})
     
-    
+    return render(request, 'estoque.html', {'form': form})
 
 def tabela_view(request):
     return render(request, 'tabela.html')
@@ -70,6 +67,3 @@ def graficos_view(request):
 
 def exportar_view(request):
     return render(request, 'mapa.html')
-
-
-

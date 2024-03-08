@@ -5,7 +5,7 @@ Para visualizar os registros da sua base de dados Django, você pode utilizar a 
 
 Criar um superusuário: Antes de acessar a interface administrativa, certifique-se de que você tenha um superusuário criado para acessar o admin do Django. Se você ainda não criou um, pode fazer isso executando o comando 
 
-python manage.py createsuperuser no terminal e seguir as instruções.
+((( python manage.py createsuperuser ))) no terminal e seguir as instruções.
 
 Acessar a interface administrativa: Execute seu servidor Django (python manage.py runserver) e acesse a interface administrativa no navegador, digitando http://localhost:8000/admin. 
 Faça login com as credenciais do superusuário que você criou.
@@ -42,10 +42,6 @@ Limpar Cache e Metadado
 python manage.py migrate --run-syncdb
 
 ==========================================
-API OPENAI VSCODE
-
-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
-
 ==========================================
 a estrutura do projeto esta assim
 

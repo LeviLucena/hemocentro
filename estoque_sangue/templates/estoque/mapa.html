@@ -247,28 +247,32 @@
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
 
-            // Adicionar marcadores para cada hemocentro
-            hemocentros.forEach(function (hemocentro) {
-                var marker = L.marker([hemocentro.latitude, hemocentro.longitude]).addTo(map);
-                var popupContent = '<b>' + hemocentro.nome + '</b><br>';
-                popupContent += '<table class="table"><thead><tr><th>Tipo Sanguíneo</th><th>Estoque Atual</th><th>Estoque Mínimo</th></tr></thead><tbody>';
-                var tiposSanguineos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-                for (var i = 0; i < tiposSanguineos.length; i++) {
-                    var estoqueAtual = randomNumber(1, 50); // Gerar estoque atual aleatório
-                    var estoqueMinimo = randomNumber(1, 20); // Gerar estoque mínimo aleatório
-                    popupContent += '<tr><td>' + tiposSanguineos[i] + '</td><td>' + estoqueAtual + '</td><td>' + estoqueMinimo + '</td></tr>';
-                }
-            popupContent += '</tbody></table>';
-            marker.bindPopup(popupContent);
-            // Definir a cor do marcador com base no estoque mínimo
-            if (hemocentro.estoqueMinimo === 5) {
-                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
-            } else if (hemocentro.estoqueMinimo === 15) {
-                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
-            } else if (hemocentro.estoqueMinimo === 25) {
-                marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
-            }
-        });
+// Adicionar marcadores para cada hemocentro
+hemocentros.forEach(function (hemocentro) {
+    var marker = L.marker([hemocentro.latitude, hemocentro.longitude]).addTo(map);
+    var popupContent = '<b>' + hemocentro.nome + '</b><br>';
+    popupContent += '<table class="table"><thead><tr><th>Tipo Sanguíneo</th><th>Estoque Atual</th><th>Estoque Mínimo</th></tr></thead><tbody>';
+    var tiposSanguineos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+    var estoqueMinimoAbaixo = false; // Flag para indicar se o estoque mínimo está abaixo dos critérios
+    for (var i = 0; i < tiposSanguineos.length; i++) {
+        var estoqueAtual = randomNumber(1, 50); // Gerar estoque atual aleatório
+        var estoqueMinimo = randomNumber(1, 20); // Gerar estoque mínimo aleatório
+        popupContent += '<tr><td>' + tiposSanguineos[i] + '</td><td>' + estoqueAtual + '</td><td>' + estoqueMinimo + '</td></tr>';
+        // Verificar se o estoque mínimo está abaixo dos critérios
+        if (estoqueMinimo < 5 || estoqueMinimo < 15 || estoqueMinimo < 25) {
+            estoqueMinimoAbaixo = true;
+        }
+    }
+    popupContent += '</tbody></table>';
+    marker.bindPopup(popupContent);
+    // Definir a cor do marcador com base no estoque mínimo
+    if (estoqueMinimoAbaixo) {
+        marker.setIcon(L.icon({ iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+    } else {
+        // Definir a cor padrão do marcador
+        marker.setIcon(L.icon({ iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png' }));
+    }
+});
             
         </script>
 

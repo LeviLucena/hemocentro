@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de São Paulo</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Custom CSS -->
+    <style>
+        #map {
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([-23.5505, -46.6333], 7); // Coordenadas do estado de São Paulo como ponto central
+
+        // Adicionar o mapa base do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Carregar os limites dos municípios de São Paulo usando o GeoJSON
+        fetch('../static/SP_Municipios_2022.json')
+            .then(response => response.json())
+            .then(data => {
+                L.geoJSON(data, {
+                    style: function (feature) {
+                        var fillColor = '#3388ff'; // Cor padrão
+                        // Verificar se algum hemocentro tem estoque mínimo igual a 5
+                        var hasLowStock = hemocentros.some(hemocentro => hemocentro.estoqueMinimo <= 5);
+                        if (hasLowStock) {
+                            fillColor = '#FF0000'; // Cor vermelha para estoque baixo
+                        }
+                        return {
+                            fillColor: fillColor,
+                            color: 'blue', // Cor das linhas das fronteiras
+                            weight: 1, // Espessura das linhas das fronteiras
+                            dashArray: '5, 5' // Padrão tracejado
+                        };
+                    }
+                }).addTo(map);
+            });
+
+        // Dados dos hemocentros e seus estoques
+        var hemocentros = [
+            { nome: "FUNDAÇÃO PRÓ-SANGUE", latitude: -23.556994511528096, longitude: -46.66879108834876, estoqueMinimo: randomNumber(1, 20) },
+            { nome: "UNIFESP", latitude: -23.594616822258832, longitude: -46.64486837300925, estoqueMinimo: randomNumber(1, 20) },
+            { nome: "SANTA CASA", latitude: -23.54377, longitude: -46.64998, estoqueMinimo: randomNumber(1, 20) },
+            { nome: "COLSAN", latitude: -23.569116, longitude: -46.704055, estoqueMinimo: randomNumber(1, 20) },
+            { nome: "UNICAMP", latitude: -22.818229, longitude: -47.064201, estoqueMinimo: randomNumber(1, 20) },
+            { nome: "RIBEIRÃO PRETO", latitude: -21.177997, longitude: -47.810745, estoqueMinimo: randomNumber(1, 20) },
+            { nome: "SÃO JOSÉ DO RIO PRETO", latitude: -20.8226, longitude: -49.3804, estoqueMinimo: randomNumber(1, 20) },
+            { nome: "MARILIA", latitude: -22.2118, longitude: -49.9504, estoqueMinimo: randomNumber(1, 20) },
+            { nome: "BOTUCATU", latitude: -22.8876, longitude: -48.4468, estoqueMinimo: randomNumber(1, 20) }
+        ];
+
+        // Adicionar marcadores para cada hemocentro
+        hemocentros.forEach(function (hemocentro) {
+            var marker = L.marker([hemocentro.latitude, hemocentro.longitude]).addTo(map);
+            var popupContent = '<b>' + hemocentro.nome + '</b><br>';
+            popupContent += '<table class="table"><thead><tr><th>Tipo Sanguíneo</th><th>Estoque Atual</th><th>Estoque Mínimo</th></tr></thead><tbody>';
+            var tiposSanguineos = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+            for (var i = 0; i < tiposSanguineos.length; i++) {
+                var estoqueAtual = randomNumber(1, 50); // Gerar estoque atual aleatório
+                popupContent += '<tr><td>' + tiposSanguineos[i] + '</td><td>' + estoqueAtual + '</td><td>' + hemocentro.estoqueMinimo + '</td></tr>';
+            }
+            popupContent += '</tbody></table>';
+            marker.bindPopup(popupContent);
+        });
+
+        // Função para gerar números aleatórios dentro de um intervalo específico
+        function randomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+    </script>
+</body>
+
+</html>
