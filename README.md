@@ -17,15 +17,16 @@ contínua de sangue para pacientes em necessidade.
 
 - Autenticação de usuários para acesso ao sistema.
 - Registro de estoque de sangue por tipo sanguíneo e hemocentro.
-- Visualização de registros em uma tabela interativa.
-- Geração de gráficos para análise de estoque.
+- Visualização de registros com período em uma tabela interativa.
+- Geração de gráficos com período para análise de estoque.
 - Exportação de dados para formatos comuns.
 
 ## Galeria
 
-| Imagem 1 | Imagem 2 | Imagem 3 | Imagem 4 | Imagem 5 | Imagem 6 | Imagem 7 |
-| ---------| ---------| ---------| ---------| ---------| ---------| ---------|
-| ![1](https://github.com/LeviLucena/hemocentro/assets/34045910/2460a12e-3b3d-4bfb-aa6a-5ae7577d3503) | ![2](https://github.com/LeviLucena/hemocentro/assets/34045910/38ef48b7-5a33-4d82-9492-012f1ad0626e) | ![3](https://github.com/LeviLucena/hemocentro/assets/34045910/a4ff15db-8cc7-4028-9341-30f9e4f78647) | ![4](https://github.com/LeviLucena/hemocentro/assets/34045910/ceb2d016-20a9-43ae-b1a9-13e2eefb5618) | ![5](https://github.com/LeviLucena/hemocentro/assets/34045910/17b1f603-6c3f-4626-a55d-b34240291119) | ![6](https://github.com/LeviLucena/hemocentro/assets/34045910/0e741f4c-7727-402e-921d-2261f99d2297) | ![7](https://github.com/LeviLucena/hemocentro/assets/34045910/dd5846d8-86f4-48e7-9545-fc4d1ec46869) |
+| Imagem 1 | Imagem 2 | Imagem 3 | Imagem 4 | Imagem 5 | Imagem 6 | Imagem 7 | Imagem 8 |
+| ---------| ---------| ---------| ---------| ---------| ---------| ---------| ---------|
+| ![1](https://github.com/LeviLucena/hemocentro/assets/34045910/6f5fd4da-c4e4-4e7a-ac0b-ad4eba94d050) | ![2](https://github.com/LeviLucena/hemocentro/assets/34045910/bc940015-cb06-4491-b022-fec5e7349b38) | ![3](https://github.com/LeviLucena/hemocentro/assets/34045910/3d6bd66d-1abc-45af-aaa9-4496dc57064a) | ![4](https://github.com/LeviLucena/hemocentro/assets/34045910/978632aa-ed85-4368-923a-4bf89182050a) | ![5](https://github.com/LeviLucena/hemocentro/assets/34045910/c3ebeefb-b1a8-464d-8e2b-090ed48b7eae) | ![6](https://github.com/LeviLucena/hemocentro/assets/34045910/fa48b136-eacb-4e5b-9217-38938c1e6516) | ![7](https://github.com/LeviLucena/hemocentro/assets/34045910/42f9e85a-97be-4ed9-940d-1b15000eaadd) | ![8](https://github.com/LeviLucena/hemocentro/assets/34045910/391d59b3-974d-4d10-91c3-896d061b9d45)
+
 
 ## Instalação
 
