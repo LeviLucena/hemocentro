@@ -1,6 +1,6 @@
 # Hemocentro - Gestão de Estoque de Sangue
 
-![307550608-754dd79c-4266-4955-b564-7cc797cafdc5](https://github.com/LeviLucena/hemocentro/assets/34045910/88c6a127-a054-4b6f-9324-7783c84ab6ac)
+<img width="2048" height="747" alt="0" src="https://github.com/user-attachments/assets/6a8a97ad-1a51-4d00-b300-03d59f5d0e02" />
 
 Este é um projeto desenvolvido em Django com o objetivo de facilitar o controle de estoque de sangue em hemocentros. Com a crescente demanda por sangue e produtos sanguíneos, é crucial ter
 um sistema eficiente para gerenciar o estoque e garantir a disponibilidade adequada para pacientes que necessitam de transfusões.
