@@ -326,7 +326,13 @@
 
                 // Função para formatar a data no formato dd/mm/aaaa
                 function formatDate(dateString) {
+                    if (!dateString) {
+                        return 'Data não selecionada'; // Return a meaningful message if no date is provided
+                    }
                     var dateParts = dateString.split('-');
+                    if (dateParts.length !== 3) {
+                        return 'Formato inválido'; // Handle unexpected date formats
+                    }
                     var formattedDate = dateParts[2] + '/' + dateParts[1] + '/' + dateParts[0].slice(-2);
                     return formattedDate;
                 }
